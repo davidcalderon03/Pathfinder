@@ -11,7 +11,7 @@ import { IssueService } from 'src/app/issue.service';
       </div>
       <form class="main-form" (ngSubmit)="createAccount()">
           <div class="single-input" *ngFor="let loginInput of loginInputs; index as i">
-            <input (keyup)="fillFields($event)" name={{fieldNames[i]}} class="form-field single-input-child" placeholder={{loginInput}} type="text">
+            <input (keyup)="fillFields($event)" name={{fieldNames[i]}} class="form-field single-input-child" placeholder={{loginInput}} type="text" />
             <p class="single-input-child" *ngIf="loginInput === 'Password' && invalidPasswordFlag">Password must be 8+ characters long.</p>
             <p class="single-input-child" *ngIf="loginInput === 'Username' && usernameTakenFlag">Username Taken!</p>
           </div>
@@ -20,22 +20,21 @@ import { IssueService } from 'src/app/issue.service';
     </div>
     </div>
   `,
-  styles: [
-  `
+  styles: [`
   .profile-background{
+    background: linear-gradient(90deg, #2b3988 0%, #12279e 50%, #000d56 100%);
   }
   .main-form{
+    max-width: 35rem;
     background-color: #eeeeee;
     border: 2px solid black;
     border-radius: 10px;
     padding: 10rem 2rem;
-    margin: 2rem auto;
-    margin: 0 auto;
+    margin: 1rem auto;
     display: flex;
     flex-direction: column;
     font-family: "Lato", serif;
     font-weight: bold;
-    margin-left: 0;
     height: 20rem;
   }
   .form-field{

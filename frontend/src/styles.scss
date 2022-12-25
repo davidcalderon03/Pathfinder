@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+html, body{
+    margin: 0;
+    height: 100%;
+    text-align: center;
+}
+.wrapper{
+    max-width: 1280px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 2rem 10px 4rem;
+  }
+
+
+  .TESTING{
+    color: #2b3988;
+  }

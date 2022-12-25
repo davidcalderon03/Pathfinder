@@ -8,9 +8,9 @@ import { PostsComponent } from './components/posts/posts.component';
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'profile', component: ProfileComponent},
   {path: 'messages', component: MessagesComponent},
   {path: 'posts', component: PostsComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: '**', component: HomeComponent}
 ];
 

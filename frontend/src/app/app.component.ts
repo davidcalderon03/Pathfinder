@@ -5,23 +5,24 @@ import { Component } from '@angular/core';
   template: `
   <div class="box">
   <header>
-  <nav class="wrapper">
-    <div id="title">
-      <h1>David Calderon</h1>
-      <h5>Personal Site</h5>
-    </div>
     <div id="navbar">
+    <div id="title">
+      <h1>Social Media Site</h1>
+      <h5>Reddit Clone?</h5>
+    </div>
     <div routerLink="/home" routerLinkActive="active">
       <h4 id="nav-1">Home</h4>
     </div>
-    <div routerLink="/projects" routerLinkActive="active">
-      <h4 id="nav-2">Projects</h4>
+    <div routerLink="/posts" routerLinkActive="active">
+      <h4 id="nav-2">Posts</h4>
     </div>
-    <div routerLink="/contact" routerLinkActive="active">
-      <h4 id="nav-3">Contact</h4>
+    <div routerLink="/messages" routerLinkActive="active">
+      <h4 id="nav-3">Messages</h4>
+    </div>
+    <div routerLink="/profile" routerLinkActive="active">
+      <h4 id="nav-4">Profile</h4>
     </div>
   </div>
-  </nav>
 </header>
 <main>
   <router-outlet></router-outlet>
@@ -31,11 +32,11 @@ import { Component } from '@angular/core';
 </footer>
 </div>
   `,
-  styles: [`
-  .box{
-    display: flex;
-    flex-flow: column;
-    height: 100%;
+styles: [`
+.box{
+  display: flex;
+  flex-flow: column;
+  height: 100%;
  }
  header{
     flex: 0 1 auto;
@@ -56,29 +57,28 @@ import { Component } from '@angular/core';
  }
  
  header{
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,0.8) 5%, rgba(9,15,121,0.9) 37%, rgba(0,212,255,1) 100%);
-    border-bottom: 3px solid rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(20,20,20,1) 5%, rgba(40,40,40,1) 37%, rgba(60,60,60,1) 100%);
  }
  #title{
  text-align: center;
- padding: 1.5rem 0 2.5rem;
+ padding: 0;
     & h1, h5{
        color: rgba(255, 255, 255, 0.8);   
        font-family: Lobster, serif;
+       margin: 1rem;
        text-shadow: 1px 1px rgb(0, 0, 0);
+    }
+    & h1{
+      font-size: 1.6rem;
     }
  }
  #navbar{
+  display: flex;
  & div{
-    display: inline-block;
-    margin: 1rem 10%;
-    border-radius: 3px;
-    padding: 0.4rem;
+    margin: auto;
     cursor: pointer;
     & h4{
        color: rgb(255, 255, 255, 0.8);
-       // font-family: "Lato", Arial, Helvetica, sans-serif;
        font-family: 'Source Sans Pro', serif;
        font-weight: bolder;
        font-size: 16px;
@@ -96,6 +96,9 @@ import { Component } from '@angular/core';
        }
        &#nav-3{
           text-shadow: -1px -1px #a20101;
+       }
+       &#nav-4{
+          text-shadow: -1px -1px #55aa55;
        }
     }
  }
