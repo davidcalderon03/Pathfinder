@@ -23,7 +23,6 @@ import { IssueService } from 'src/app/issue.service';
   styles: [
   `
   .profile-background{
-    color: 
   }
   .main-form{
     background-color: #eeeeee;
