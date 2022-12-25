@@ -6,54 +6,71 @@ import { IssueService } from 'src/app/issue.service';
   template: `
   <div class="profile-background">
   <div class="wrapper">
-      <div *ngIf=" this.notification!=='' ">
-        <h1>{{notification}}</h1>
-      </div>
-      <form class="main-form" (ngSubmit)="createAccount()">
+      <form *ngIf="!loggedIn" class="login-form" (submit)="createAccount($event)">
+      <h2 class="login-header">{{loggedIn ? "Profile": "Login"}}</h2>
+      <app-user-msg [message]="notification" [color]="notificationColor"></app-user-msg>
           <div class="single-input" *ngFor="let loginInput of loginInputs; index as i">
             <input (keyup)="fillFields($event)" name={{fieldNames[i]}} class="form-field single-input-child" placeholder={{loginInput}} type="text" />
             <p class="single-input-child" *ngIf="loginInput === 'Password' && invalidPasswordFlag">Password must be 8+ characters long.</p>
             <p class="single-input-child" *ngIf="loginInput === 'Username' && usernameTakenFlag">Username Taken!</p>
           </div>
-        <button>{{formType}}</button>
+          <button class="profile-button">
+            <h4>{{loggedIn? 'Profile' : 'Log In'}}</h4>
+          </button>
       </form>
+      
+
+
+
     </div>
     </div>
   `,
   styles: [`
   .profile-background{
     background: linear-gradient(90deg, #2b3988 0%, #12279e 50%, #000d56 100%);
+    height: 100%;
   }
-  .main-form{
+  .login-form{
     max-width: 35rem;
     background-color: #eeeeee;
-    border: 2px solid black;
     border-radius: 10px;
-    padding: 10rem 2rem;
+    padding: 2rem;
     margin: 1rem auto;
-    display: flex;
-    flex-direction: column;
-    font-family: "Lato", serif;
     font-weight: bold;
-    height: 20rem;
   }
   .form-field{
-    width: 8rem;
-    height: 2rem;
-    padding: 0;
+    width: 16rem;
+    height: 3rem;
+    padding: 0 0 0 .2rem;;
     margin: 0.5rem auto;
     background-color: #f2f2f2;
-    border-radius: 10px;
     &:hover{
-      background-color: #f2fff6;
-      box-shadow: 4px 3px 8px 0px #ab8133;
+      background-color: #eeeeee;
+      box-shadow: 4px 3px 8px 0px #aaaadd;
     }
   }
-  .single-input{
-    
+  input{
+    font-family: "Lato", serif;
+    font-size: 100%;
+
   }
-  .single-input-child{
-    display: inline-block;
+  .profile-button{
+    background-color: #2b3988;
+    width: 14rem;
+    height: 2rem;
+    margin: 0.5rem auto;
+    padding: 0;
+    & h4{
+      margin: 0;
+      color: #dddddd;
+    }
+    &:hover {
+      transition-duration: 0.3s;
+      background-color: #eeeeee;
+      & h4{
+        color: #444444;
+      }
+    }
   }
   `
   ]
@@ -73,6 +90,9 @@ export class ProfileComponent implements OnInit {
   public username: String = "";
   public email: String = "";
   public password: String = "";
+
+  public loggedIn: Boolean = false;
+
 
   constructor(private issueService: IssueService) { }
 
@@ -108,7 +128,8 @@ export class ProfileComponent implements OnInit {
       this.password = v; break;
     }
   }
-  createAccount() {
+  createAccount(event: any) {
+    event.preventDefault();
     console.log("Account Creation Attempted.");
     console.log("Password: " + this.password);
     console.log("First Name: " + this.firstName);

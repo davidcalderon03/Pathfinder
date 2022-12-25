@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { UserMsgComponent } from './components/user-msg/user-msg.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     HomeComponent,
     ProfileComponent,
     PostsComponent,
-    MessagesComponent
+    MessagesComponent,
+    UserMsgComponent
   ],
   imports: [
     BrowserModule,
