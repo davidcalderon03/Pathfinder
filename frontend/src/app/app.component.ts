@@ -79,7 +79,6 @@ styles: [`
     cursor: pointer;
     & h4{
        color: rgb(255, 255, 255, 0.8);
-       font-family: 'Source Sans Pro', serif;
        font-weight: bolder;
        font-size: 16px;
        margin: 0;

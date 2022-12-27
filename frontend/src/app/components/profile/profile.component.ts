@@ -6,68 +6,40 @@ import { IssueService } from 'src/app/issue.service';
   template: `
   <div class="profile-background">
   <div class="wrapper">
-      <form *ngIf="!loggedIn" class="login-form" (submit)="createAccount($event)">
-      <h2 class="login-header">{{loggedIn ? "Profile": "Login"}}</h2>
-      <app-user-msg [message]="notification" [color]="notificationColor"></app-user-msg>
-          <div class="single-input" *ngFor="let loginInput of loginInputs; index as i">
-            <input (keyup)="fillFields($event)" name={{fieldNames[i]}} class="form-field single-input-child" placeholder={{loginInput}} type="text" />
-            <p class="single-input-child" *ngIf="loginInput === 'Password' && invalidPasswordFlag">Password must be 8+ characters long.</p>
-            <p class="single-input-child" *ngIf="loginInput === 'Username' && usernameTakenFlag">Username Taken!</p>
-          </div>
-          <button class="profile-button">
-            <h4>{{loggedIn? 'Profile' : 'Log In'}}</h4>
-          </button>
-      </form>
-      
-
-
-
+    <div *ngIf="!loggedIn" class="form-change-area">
+      <h3>{{formVersion === 0 ? "Don't Have An Account?" : "Already Have an Account?"}}</h3>
+      <button id="form-change-button" (click)="swapFormVersion()"><p>{{formVersion === 0 ? "Create Account": "Login"}}</p></button>
     </div>
-    </div>
+  <app-user-msg [message]="notification" [color]="notificationColor"></app-user-msg>
+  <app-login-form *ngIf="!loggedIn && formVersion === 0" (sendNotification)="handleNotification($event)" (logIn)="acceptLogin($event)"></app-login-form>
+  <app-signup-form *ngIf="!loggedIn && formVersion === 1" (sendNotification)="handleNotification($event)" (logIn)="acceptLogin($event)"></app-signup-form>
+  <app-account *ngIf="loggedIn"></app-account>
+  </div>
+  </div>
   `,
   styles: [`
   .profile-background{
     background: linear-gradient(90deg, #2b3988 0%, #12279e 50%, #000d56 100%);
     height: 100%;
   }
-  .login-form{
-    max-width: 35rem;
+  .form-change-area{
     background-color: #eeeeee;
-    border-radius: 10px;
-    padding: 2rem;
-    margin: 1rem auto;
-    font-weight: bold;
+    border-radius: 5px;
+    width: 15rem;
+    margin: auto;
+    padding: 1rem;
   }
-  .form-field{
-    width: 16rem;
-    height: 3rem;
-    padding: 0 0 0 .2rem;;
-    margin: 0.5rem auto;
-    background-color: #f2f2f2;
-    &:hover{
-      background-color: #eeeeee;
-      box-shadow: 4px 3px 8px 0px #aaaadd;
-    }
-  }
-  input{
-    font-family: "Lato", serif;
+  #form-change-button{
     font-size: 100%;
-
-  }
-  .profile-button{
+    min-width: 6rem;
     background-color: #2b3988;
-    width: 14rem;
-    height: 2rem;
-    margin: 0.5rem auto;
-    padding: 0;
-    & h4{
-      margin: 0;
+    & p{
       color: #dddddd;
     }
     &:hover {
       transition-duration: 0.3s;
-      background-color: #eeeeee;
-      & h4{
+      background-color: #9ba9e8;
+      & p{
         color: #444444;
       }
     }
@@ -77,90 +49,35 @@ import { IssueService } from 'src/app/issue.service';
 })
 export class ProfileComponent implements OnInit {
 
-  public loginInputs = ["First Name", "Last Name", "Username", "Email", "Password"];
-  public fieldNames = ["firstName", "lastName", "username", "email", "password"];
-  public notification: String = "";
-  public notificationColor: String = "green";
-  public formType: String = "Create Account";
-
-  public usernameTakenFlag = false;
-  public invalidPasswordFlag = false;
-  public firstName: String = "";
-  public lastName: String = "";
-  public username: String = "";
-  public email: String = "";
-  public password: String = "";
-
   public loggedIn: Boolean = false;
+  public username: String = "";
+  public formVersion: Number = 0; //0 for login, 1 for create account
+  public notification: String = "";
+  public notificationColor: String = "black";
 
 
   constructor(private issueService: IssueService) { }
 
   ngOnInit(): void {
+    this.loggedIn = this.issueService.getLoggedIn();
+    this.username = this.issueService.getUsername();
   }
-  fillFields($event: any) {
-    console.log("Attribute: " + $event.target.name + " New Value: " + $event.target.value);
-    let v = $event.target.value;
-    switch($event.target.name) {
-      case "firstName": this.firstName = v; break;
-      case "lastName": this.lastName = v; break;
-      case "username": 
-        this.username = v;
-        this.issueService.post("usernameexists", {username: this.username}).subscribe( res => 
-          {
-            console.log("Response: " + res);
-            if(res === true) {
-              this.usernameTakenFlag = true;
-            }
-            else {
-              this.usernameTakenFlag = false;
-            }
-          }
-          );
-          break;
-      case "email": this.email = v; break;
-      case "password": 
-      if (v.length < 8) {
-        this.invalidPasswordFlag = true;
-      } else {
-        this.invalidPasswordFlag = false;
-      }
-      this.password = v; break;
-    }
-  }
-  createAccount(event: any) {
-    event.preventDefault();
-    console.log("Account Creation Attempted.");
-    console.log("Password: " + this.password);
-    console.log("First Name: " + this.firstName);
-    if (this.username === "" || this.firstName === "" || this.lastName === "" || this.password === "" || this.email === "") {
-      this.notification = "You must complete all fields."
-      this.destroyNotification();
-    } else if (this.usernameTakenFlag) {
-      this.notification = "This username is taken.";
-      this.destroyNotification();
-    } else if (this.invalidPasswordFlag) {
-      this.notification = "Invalid password. Must be at least 8 characters long.";
-      this.destroyNotification();
+  swapFormVersion() {
+    if (this.formVersion === 0) {
+      this.formVersion = 1;
     } else {
-      const data = {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        username: this.username,
-        email: this.email,
-        password: this.password
-      };
-      this.issueService.post("createuser", data).subscribe( res => console.log(res) )
-      this.notification = "Successfully Created Account!";
-      console.log("Successfully created account");
-      this.username = this.firstName = this.lastName = this.email = this.password = "";
-      this.notificationColor = "#ffffff";
-      this.destroyNotification();
+      this.formVersion = 0;
     }
   }
-  destroyNotification(): void {
+  handleNotification(data: {message: String, color: String}) {
+    this.notification = data.message;
+    this.notificationColor = data.color;
     setTimeout( () => {
-      this.notification = ""
+      this.notification = "";
     }, 1500);
+  }
+  acceptLogin(data: Boolean) {
+    this.loggedIn = true;
+    console.log("Logged in: " + this.loggedIn);
   }
 }

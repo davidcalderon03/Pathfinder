@@ -41,39 +41,35 @@ app.post("/createuser", jsonParser, (req, res) => {
    });
 });
 app.post("/usernameexists", jsonParser, (req, res) =>  {
-      User.findOne({username: req.body.username}, (err, result) => {
-         if(result && !err) {
-            res.send(true);
-         }
-         else if(!err) {
-            res.send(false);
-         }
-      });
+   User.findOne({username: req.body.username}, (err, result) => {
+      if(result && !err) {
+         res.send(true);
+      }
+      else if(!err) {
+         res.send(false);
+      }
+   });
 });
 
 app.post("/login", jsonParser, (req, res) => {
-   return new Promise( resolve => {
-      User.findOne({username: args.username}, async (err, result) => {
-         if(!result) {
-            resolve("Username does not exist");
+   User.findOne({username: req.body.username}, async (err, result) => {
+      if(!result) {
+         res.send(false);
+      } else {
+         let decrypted = decrypt(result.encryptedPassword);
+         console.log("Decrypted Password on Account: " + decrypted);
+         if(req.body.password!=decrypted) {
+            res.send(false);
          }
          else{
-            let decrypted = decrypt(result.encryptedPassword);
-            console.log("Decrypted Password on Account: " + decrypted);
-            if(args.password!=decrypted) {
-               resolve("Incorrect password");
-            }
-            else{
-               resolve("Login successful");
-            }
+            res.send(true);
          }
-      });
+      }
    });
 });
 app.post("/sendmessage", jsonParser, (req, res) => {
    
 });
-
 
 
 
