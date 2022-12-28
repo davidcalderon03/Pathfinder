@@ -13,6 +13,7 @@ import { UserMsgComponent } from './components/user-msg/user-msg.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { AccountComponent } from './components/account/account.component';
+import { CreatePostFormComponent } from './components/create-post-form/create-post-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AccountComponent } from './components/account/account.component';
     UserMsgComponent,
     LoginFormComponent,
     SignupFormComponent,
-    AccountComponent
+    AccountComponent,
+    CreatePostFormComponent
   ],
   imports: [
     BrowserModule,

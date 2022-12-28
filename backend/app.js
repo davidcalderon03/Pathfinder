@@ -8,6 +8,7 @@ app.use(cors());
 const {connectDB, closeDB } = require("./config/db");       //Database setup
 const User = require("./models/user");                      //User Schema
 const DirectMessage = require("./models/directMessage");    //Direct Message Schema
+const Post = require("./models/post");
 const {encrypt, decrypt } = require("./encryption");        //Custom Encryption Methods
 connectDB();
 
@@ -67,6 +68,23 @@ app.post("/login", jsonParser, (req, res) => {
       }
    });
 });
+app.post("/createpost", jsonParser, (req, res) => {
+   User.findOne({username: req.body.username}, async (err, result) => {
+      if(!result) {
+         res.send(false);
+      } else {
+         let p = new Post({
+            username: req.body.username,
+            header: req.body.header,
+            content: req.body.content,
+            labels: req.body.labels
+         });
+         p.save();
+         res.send(true);
+      }
+   });
+});
+
 app.post("/sendmessage", jsonParser, (req, res) => {
    
 });

@@ -7,8 +7,8 @@ import { IssueService } from 'src/app/issue.service';
   template: `
   <form class="login-form" (submit)="createAccount($event)">
     <h2 class="login-header">Login</h2>
-    <div class="single-input"><input [(ngModel)]="username" name="username" class="form-field single-input-child" placeholder="Username" /></div>
-    <div class="single-input"><input [(ngModel)]="password" name="password" class="form-field single-input-child" placeholder="Password" /></div>
+    <div class="single-input"><input [(ngModel)]="username" name="username" class="form-field single-input-child" placeholder="Username" autocomplete="off" /></div>
+    <div class="single-input"><input [(ngModel)]="password" name="password" class="form-field single-input-child" placeholder="Password" autocomplete="off" type="password" /></div>
     <button class="profile-button">
       <h4>Login</h4>
     </button>

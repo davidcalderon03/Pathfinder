@@ -8,11 +8,11 @@ import { IssueService } from '../../issue.service';
   template: `
       <form class="login-form" (submit)="createAccount($event)">
       <h2 class="login-header">Sign Up</h2>
-          <div class="single-input"><input [(ngModel)]="firstName" name="firstName" class="form-field single-input-child" placeholder="First Name" /></div>
-          <div class="single-input"><input [(ngModel)]="lastName" name="lastName" class="form-field single-input-child" placeholder="Last Name" /></div>
-          <div class="single-input"><input [(ngModel)]="username" name="username" class="form-field single-input-child" placeholder="Username" /></div>
-          <div class="single-input"><input [(ngModel)]="email" name="email" class="form-field single-input-child" placeholder="Email" /></div>
-          <div class="single-input"><input [(ngModel)]="password" name="password" class="form-field single-input-child" placeholder="Password" /></div>
+          <div class="single-input"><input [(ngModel)]="firstName" name="firstName" class="form-field single-input-child" placeholder="First Name" autocomplete="off" /></div>
+          <div class="single-input"><input [(ngModel)]="lastName" name="lastName" class="form-field single-input-child" placeholder="Last Name" autocomplete="off" /></div>
+          <div class="single-input"><input [(ngModel)]="username" name="username" class="form-field single-input-child" placeholder="Username" autocomplete="off" /></div>
+          <div class="single-input"><input [(ngModel)]="email" name="email" class="form-field single-input-child" placeholder="Email" autocomplete="off" type="email" /></div>
+          <div class="single-input"><input [(ngModel)]="password" name="password" class="form-field single-input-child" placeholder="Password" autocomplete="off" type="password" /></div>
           <button class="profile-button">
             <h4>Create Account</h4>
           </button>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IssueService } from 'src/app/issue.service';
 
 @Component({
@@ -6,6 +6,7 @@ import { IssueService } from 'src/app/issue.service';
   template: `
     <div class="account-section">
       <h2>{{"Account Settings for " + username}}</h2>
+      <button id="logout-button" (click)="handleLogout()"><h4>Logout</h4></button>
     </div>
   `,
   styles: [`
@@ -17,14 +18,37 @@ import { IssueService } from 'src/app/issue.service';
     margin: 1rem auto;
     font-weight: bold;
   }
+  #logout-button{
+    font-size: 100%;
+    min-width: 6rem;
+    background-color: #2b3988;
+    & p{
+      color: #dddddd;
+    }
+    &:hover {
+      transition-duration: 0.3s;
+      background-color: #9ba9e8;
+      & p{
+        color: #444444;
+      }
+    }
+  }
   `]
 })
 export class AccountComponent implements OnInit {
   public username: String = "";
-  constructor(private issueService: IssueService) { }
 
+  @Output() acceptLogout = new EventEmitter<Boolean>();
+
+  constructor(private issueService: IssueService) { }
   ngOnInit(): void {
     this.username = this.issueService.getUsername();
+  }
+
+  handleLogout() {
+    this.issueService.setLoggedIn(false);
+    this.issueService.setUsername("");
+    this.acceptLogout.emit(false);
   }
 
 }

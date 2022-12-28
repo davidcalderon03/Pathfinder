@@ -11,9 +11,9 @@ import { IssueService } from 'src/app/issue.service';
       <button id="form-change-button" (click)="swapFormVersion()"><p>{{formVersion === 0 ? "Create Account": "Login"}}</p></button>
     </div>
   <app-user-msg [message]="notification" [color]="notificationColor"></app-user-msg>
-  <app-login-form *ngIf="!loggedIn && formVersion === 0" (sendNotification)="handleNotification($event)" (logIn)="acceptLogin($event)"></app-login-form>
-  <app-signup-form *ngIf="!loggedIn && formVersion === 1" (sendNotification)="handleNotification($event)" (logIn)="acceptLogin($event)"></app-signup-form>
-  <app-account *ngIf="loggedIn"></app-account>
+  <app-login-form *ngIf="!loggedIn && formVersion === 0" (sendNotification)="handleNotification($event)" (logIn)="changeLogin($event)"></app-login-form>
+  <app-signup-form *ngIf="!loggedIn && formVersion === 1" (sendNotification)="handleNotification($event)" (logIn)="changeLogin($event)"></app-signup-form>
+  <app-account (acceptLogout)="changeLogin($event)" *ngIf="loggedIn"></app-account>
   </div>
   </div>
   `,
@@ -44,8 +44,7 @@ import { IssueService } from 'src/app/issue.service';
       }
     }
   }
-  `
-  ]
+  `]
 })
 export class ProfileComponent implements OnInit {
 
@@ -76,8 +75,8 @@ export class ProfileComponent implements OnInit {
       this.notification = "";
     }, 1500);
   }
-  acceptLogin(data: Boolean) {
-    this.loggedIn = true;
+  changeLogin(data: Boolean) {
+    this.loggedIn = data;
     console.log("Logged in: " + this.loggedIn);
   }
 }
