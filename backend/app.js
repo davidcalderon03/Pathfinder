@@ -2,7 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const bodyParser = require("body-parser");
-var jsonParser = bodyParser.json();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 const cors = require("cors");
 app.use(cors());
 const {connectDB, closeDB } = require("./config/db");       //Database setup
@@ -16,7 +17,7 @@ app.get("/", (req, res) => {
    res.status(200).json("Hello World");
 });
 
-app.post("/createuser", jsonParser, (req, res) => {
+app.post("/createuser", (req, res) => {
    return new Promise( resolve => {
       User.findOne({username: req.body.username}, (err, result) => {
          if(err) {
@@ -41,7 +42,7 @@ app.post("/createuser", jsonParser, (req, res) => {
       });
    });
 });
-app.post("/usernameexists", jsonParser, (req, res) =>  {
+app.post("/usernameexists", (req, res) =>  {
    User.findOne({username: req.body.username}, (err, result) => {
       if(result && !err) {
          res.send(true);
@@ -52,7 +53,7 @@ app.post("/usernameexists", jsonParser, (req, res) =>  {
    });
 });
 
-app.post("/login", jsonParser, (req, res) => {
+app.post("/login", (req, res) => {
    User.findOne({username: req.body.username}, async (err, result) => {
       if(!result) {
          res.send(false);
@@ -68,7 +69,7 @@ app.post("/login", jsonParser, (req, res) => {
       }
    });
 });
-app.post("/createpost", jsonParser, (req, res) => {
+app.post("/createpost", (req, res) => {
    User.findOne({username: req.body.username}, async (err, result) => {
       if(!result) {
          res.send(false);
@@ -77,7 +78,7 @@ app.post("/createpost", jsonParser, (req, res) => {
             username: req.body.username,
             header: req.body.header,
             content: req.body.content,
-            labels: req.body.labels
+            labels: req.body.labels.length === 1 && req.body.labels[0] === "" ? ["Untitled"] : req.body.labels
          });
          p.save();
          res.send(true);
@@ -85,10 +86,65 @@ app.post("/createpost", jsonParser, (req, res) => {
    });
 });
 
-app.post("/sendmessage", jsonParser, (req, res) => {
-   
+app.get("/posts", (req, res) => {
+   Post.find({}, (err, results) => {
+      if (err) {
+         res.status(404).send("Not successful");
+      } else if (results.length === 0) {
+         res.status(200).send([]);
+      } else {
+         res.send(results);
+      }
+   });
+});
+app.post("/posts", (req, res) => {
+   Post.find({
+      username: {$regex : new RegExp(".*" + (req.body.username ? req.body.username : "") + ".*", "i")}, //only query if it exists
+      header: {$regex : new RegExp(".*" + (req.body.header ? req.body.header : "") + ".*", "i")}        //only query if it exists
+   }, (err, results) => {
+      if (err) {
+         res.status(404).send("Not successful");
+      } else if (results.length === 0) {
+         res.send([]);
+      } else {
+         if (req.body.labels && req.body.labels.length > 0) {
+            for (let i = 0; i < results.length; i++) {
+               let matchFound = false;
+               results[i].labels.forEach(resLabel => {
+                  req.body.labels.forEach(reqLabel => {
+                     if (resLabel.match(".*" + reqLabel + ".*")) {
+                        matchFound = true;
+                     }
+                  });
+               });
+               if (!matchFound) {
+                  results.splice(i, 1);
+                  i--;
+               }
+            }
+         }
+         res.send(results);
+      }
+   });
 });
 
+
+app.get("/finduser/:username", (req, res) => {
+   User.find({ username: {$regex : new RegExp("^" + req.params.username.toLowerCase(), "i")}}, (err, results) => {
+      if (err){
+         res.status(404).send("Not working");
+      } else {
+         res.send(results);
+      }
+   });
+});
+
+
+
+
+app.post("/sendmessage", (req, res) => {
+   
+});
 
 
 const port = process.env.PORT || 4000;
@@ -96,3 +152,6 @@ app.listen(port, (err) => {
   if(err){return console.log(err);}
   console.log("Express Server listening on port " + port);
 });
+
+
+// Post.deleteMany({}, ()=> {});

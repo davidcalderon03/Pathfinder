@@ -5,28 +5,30 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { MessagesComponent } from './components/messages/messages.component';
-import { PostsComponent } from './components/posts/posts.component';
+
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { ServicesComponent } from './services/services.component';
+import { MailingListComponent } from './components/mailing-list/mailing-list.component';
+import { OurMissionComponent } from './our-mission/our-mission.component';
+import { TeamProfileComponent } from './team-profile/team-profile.component';
+
 import { ProfileComponent } from './components/profile/profile.component';
-import { UserMsgComponent } from './components/user-msg/user-msg.component';
-import { LoginFormComponent } from './components/login-form/login-form.component';
-import { SignupFormComponent } from './components/signup-form/signup-form.component';
+import { MessagesComponent } from './components/messages/messages.component';
 import { AccountComponent } from './components/account/account.component';
-import { CreatePostFormComponent } from './components/create-post-form/create-post-form.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    LandingPageComponent,
+    ServicesComponent,
+    MailingListComponent,
+    OurMissionComponent,
+    TeamProfileComponent,
+
     ProfileComponent,
-    PostsComponent,
     MessagesComponent,
-    UserMsgComponent,
-    LoginFormComponent,
-    SignupFormComponent,
-    AccountComponent,
-    CreatePostFormComponent
+    AccountComponent
   ],
   imports: [
     BrowserModule,

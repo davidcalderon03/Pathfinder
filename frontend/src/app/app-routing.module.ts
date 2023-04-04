@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { MessagesComponent } from './components/messages/messages.component';
-import { PostsComponent } from './components/posts/posts.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { ServicesComponent } from './services/services.component';
+import { OurMissionComponent } from './our-mission/our-mission.component';
+import { TeamProfileComponent } from './team-profile/team-profile.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'messages', component: MessagesComponent},
-  {path: 'posts', component: PostsComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: '**', component: HomeComponent}
+  {path: '', redirectTo: 'landingPage', pathMatch: 'full'},
+  {path: 'landingPage', component: LandingPageComponent},
+  {path: 'services', component: ServicesComponent},
+  {path: 'ourMission', component: OurMissionComponent},
+  {path: 'teamProfile', component: TeamProfileComponent},
+  {path: '**', component: LandingPageComponent}
 ];
 
 @NgModule({

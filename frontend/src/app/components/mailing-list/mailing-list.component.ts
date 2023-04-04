@@ -4,7 +4,7 @@ import { IssueService } from '../../issue.service';
 
 
 @Component({
-  selector: 'app-signup-form',
+  selector: 'app-mailing-list',
   template: `
       <form class="login-form" (submit)="createAccount($event)">
       <h2 class="login-header">Sign Up</h2>
@@ -61,7 +61,7 @@ import { IssueService } from '../../issue.service';
   }
   `]
 })
-export class SignupFormComponent implements OnInit {
+export class MailingListComponent implements OnInit {
   public loggedIn: Boolean = false;
   public firstName: String = "";
   public lastName: String = "";

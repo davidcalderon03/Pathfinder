@@ -28,9 +28,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/style.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/laurel.js",
+              "src/assets/scroll-reveal.js"
+            ]
           },
           "configurations": {
             "production": {
