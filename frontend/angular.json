@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "social-media-project": {
+    "pathfinder": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/social-media-project",
+            "outputPath": "dist/pathfinder",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "social-media-project:build:production"
+              "browserTarget": "pathfinder:build:production"
             },
             "development": {
-              "browserTarget": "social-media-project:build:development"
+              "browserTarget": "pathfinder:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "social-media-project:build"
+            "browserTarget": "pathfinder:build"
           }
         },
         "test": {

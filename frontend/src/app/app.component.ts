@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
   <div class="box">
   <header class="header">
-		<h1 class="logo"><a href="#">Pathfinder</a></h1>
+		<h1 class="logo"><a routerLink="/landingPage" routerLinkActive="active">Pathfinder</a></h1>
       <ul class="main-nav">
           <li><a routerLink="/landingPage" routerLinkActive="active">Landing Page</a></li>
           <li><a routerLink="/services" routerLinkActive="active">Overview</a></li>
@@ -147,7 +147,7 @@ a {
 	color: #34495e;
 	font-size: .99em;
 }
-.main-nav a:hover {
+.main-nav a:hover, h1 a:hover {
 	color: #718daa;
 }
 .header {
@@ -210,5 +210,5 @@ a {
 `]
 })
 export class AppComponent {
-  title = 'social-media-project';
+  title = 'pathfinder';
 }

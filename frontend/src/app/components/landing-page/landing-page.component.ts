@@ -35,7 +35,6 @@ import { Component, OnInit } from '@angular/core';
                 </div>
             </div>
         </header>
-
         <main>
             <section class="hero">
                 <div class="container">
@@ -43,7 +42,10 @@ import { Component, OnInit } from '@angular/core';
 						<div class="hero-copy">
 	                        <h1 class="hero-title mt-0">A New Way to Navigate Careers</h1>
 	                        <p class="hero-paragraph">Pathfinder will enable you to speak to professionals in any field you want, ensuring that you can find out what you are interested in.</p>
-	                        <div class="hero-cta"><a class="button button-shadow" href="#">Learn more</a><a class="button button-primary button-shadow" href="#">Early access</a></div>
+	                        <div class="hero-cta">
+								<a class="button button-shadow" routerLink="/services">Learn more</a>
+								<a class="button button-primary button-shadow" onClick="document.getElementById('mailingList').scrollIntoView({behavior: 'smooth'});">Mailing List</a>
+							</div>
 						</div>
 						<div class="hero-app">
 							<div class="hero-app-illustration">
@@ -131,157 +133,55 @@ import { Component, OnInit } from '@angular/core';
                             <div class="feature is-revealing">
                                 <div class="feature-inner">
                                     <div class="feature-icon">
-										<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-1-a">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity=".16" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-1-b">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path d="M24 48H0V24C0 10.745 10.745 0 24 0h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-1-a)"/>
-										        <path d="M40 64H16V40c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-1-b)"/>
-										    </g>
-										</svg>
+										<img width="100" height="100" src="assets/images/magnifying-glass.png" alt="App preview">
                                     </div>
                                     <h3 class="feature-title mt-24">Discover</h3>
-                                    <p class="text-sm mb-0">Navigate our web service to find the careers that you are interested in, if you're not quite sure yet.</p>
+                                    <p class="text-sm mb-0">Navigate our web service to find the careers that you are interested in, if you're not quite sure yet</p>
                                 </div>
                             </div>
 							<div class="feature is-revealing">
                                 <div class="feature-inner">
                                     <div class="feature-icon">
-										<svg width="68" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-2-a">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity=".16" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-2-b">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path d="M9.941 63.941v-24c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24h-24z" fill="url(#feature-2-a)" transform="rotate(45 33.941 39.941)"/>
-										        <path d="M16 0v24c0 13.255 10.745 24 24 24h24V24C64 10.745 53.255 0 40 0H16z" fill="url(#feature-2-b)"/>
-										    </g>
-										</svg>
+									<img width="100" height="100" src="assets/images/bookstack.png" alt="App preview">
                                     </div>
-                                    <h3 class="feature-title mt-24">Reach Out</h3>
-                                    <p class="text-sm mb-0">Talk to professionals in the industry you want to pursue.</p>
+                                    <h3 class="feature-title mt-24">Build Knowledge</h3>
+                                    <p class="text-sm mb-0">Find out where to learn the most relevant information for the careers that you are interested in</p>
                                 </div>
                             </div>
                             <div class="feature is-revealing">
                                 <div class="feature-inner">
                                     <div class="feature-icon">
-										<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="43.901%" id="feature-3-a">
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="0%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="58.893%" y1="100%" x2="58.893%" y2="18.531%" id="feature-3-b">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-3-c">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path fill="url(#feature-3-a)" opacity=".32" d="M0 24h64v40H0z"/>
-										        <path fill="url(#feature-3-b)" d="M40 24H24L0 64h64z"/>
-										        <path d="M10 10v22c0 12.15 9.85 22 22 22h22V32c0-12.15-9.85-22-22-22H10z" fill="url(#feature-3-c)" transform="rotate(45 32 32)"/>
-										    </g>
-										</svg>
+									<img width="100" height="100" src="assets/images/discussion.png" alt="App preview">
                                     </div>
                                     <h3 class="feature-title mt-24">Discuss</h3>
-                                    <p class="text-sm mb-0">Talk to other students about potential career options, and what each entails.</p>
+                                    <p class="text-sm mb-0">Talk to other students about potential career options, and what each entails</p>
                                 </div>
                             </div>
                             <div class="feature is-revealing">
                                 <div class="feature-inner">
                                     <div class="feature-icon">
-										<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-4-a">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity=".16" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-4-b">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path d="M24 64H0V40c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-4-a)" transform="matrix(-1 0 0 1 48 0)"/>
-										        <path d="M40 48H16V24C16 10.745 26.745 0 40 0h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-4-b)"/>
-										    </g>
-										</svg>
+									<img width="100" height="100" src="assets/images/network.png" alt="App preview">
                                     </div>
-                                    <h3 class="feature-title mt-24"></h3>
-                                    <p class="text-sm mb-0">A pseudo-Latin text used in web design, layout, and printing in place of things to emphasise design.</p>
+                                    <h3 class="feature-title mt-24">Network</h3>
+                                    <p class="text-sm mb-0">Discuss your interests with industry professionals and college students</p>
                                 </div>
                             </div>
 							<div class="feature is-revealing">
                                 <div class="feature-inner">
                                     <div class="feature-icon">
-										<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-5-a">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity=".16" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-5-b">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path d="M24 63H0V39c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-5-a)" transform="matrix(-1 0 0 1 48 0)"/>
-										        <path d="M40 48H16V24C16 10.745 26.745 0 40 0h24v24c0 13.255-10.745 24-24 24" fill-opacity=".24" fill="url(#feature-5-a)" transform="matrix(-1 0 0 1 80 0)"/>
-										        <path d="M10.113 10.113v22c0 12.15 9.85 22 22 22h22v-22c0-12.15-9.85-22-22-22h-22z" fill="url(#feature-5-b)" transform="rotate(45 32.113 32.113)"/>
-										    </g>
-										</svg>
+									<img width="100" height="100" src="assets/images/community.png" alt="App preview">
                                     </div>
-                                    <h3 class="feature-title mt-24">Discover</h3>
-                                    <p class="text-sm mb-0">A pseudo-Latin text used in web design, layout, and printing in place of things to emphasise design.</p>
+                                    <h3 class="feature-title mt-24">Build Community</h3>
+                                    <p class="text-sm mb-0">Identify people online who share your interests to keep the conversation going</p>
                                 </div>
                             </div>
                             <div class="feature is-revealing">
                                 <div class="feature-inner">
                                     <div class="feature-icon">
-										<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-6-a">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="58.893%" y1="100%" x2="58.893%" y2="18.531%" id="feature-6-b">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path d="M24 48H0V24C0 10.745 10.745 0 24 0h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-6-a)"/>
-										        <path fill-opacity=".64" fill="url(#feature-6-b)" d="M24 29.229h40V64H0z"/>
-										    </g>
-										</svg>
+									<img width="100" height="100" src="assets/images/suitcase-icon.webp" alt="App preview">
                                     </div>
-                                    <h3 class="feature-title mt-24">Discover</h3>
-                                    <p class="text-sm mb-0">A pseudo-Latin text used in web design, layout, and printing in place of things to emphasise design.</p>
+                                    <h3 class="feature-title mt-24">Find Experience</h3>
+                                    <p class="text-sm mb-0">Find and partake in relevant entry-level internship, apprenticeship, or job shadow opportunities</p>
                                 </div>
                             </div>
                         </div>
@@ -289,7 +189,7 @@ import { Component, OnInit } from '@angular/core';
                 </div>
             </section>
 
-            <section class="media section">
+            <!-- <section class="media section">
                 <div class="container-sm">
                     <div class="media-inner section-inner">
                         <div class="media-header text-center">
@@ -329,9 +229,9 @@ import { Component, OnInit } from '@angular/core';
 						</div>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
-			<section class="newsletter section">
+			<section id="mailingList" class="newsletter section">
                 <div class="container-sm">
                     <div class="newsletter-inner section-inner">
                         <div class="newsletter-header text-center">
@@ -340,12 +240,16 @@ import { Component, OnInit } from '@angular/core';
                         </div>
                         <div class="footer-form newsletter-form field field-grouped">
                             <div class="control control-expanded">
-                                <input class="input" type="email" name="email" placeholder="Your best email&hellip;">
+                                <input [(ngModel)]="email" class="input" type="email" name="email" placeholder="Your email&hellip;">
                             </div>
                             <div class="control">
-                                <a class="button button-primary button-block button-shadow" href="#">Early access</a>
+                                <a class="button button-primary button-block button-shadow" (click)="handleEmail()">Get Updates</a>
                             </div>
                         </div>
+						<div id="email-banner">
+							<p *ngIf="!emailRejected; else elseBlock">Thanks for signing up{{email === "" ? "" : ", " + email.split("@")[0]}}!</p>
+							<ng-template #elseBlock><p>Try again. Make sure your email contains @ and . in it.</p></ng-template>
+						</div>
                     </div>
                 </div>
             </section>
@@ -361,15 +265,31 @@ import { Component, OnInit } from '@angular/core';
       text-align: center;
       margin: 0 auto;
       padding: 2rem 10px 0;
-    }
+	}
+	#email-banner{
+		display: none;
+	}
     `
   ]
 })
 export class LandingPageComponent implements OnInit {
-
-  constructor() { }
-
+  email: String = "";
+  emailRejected: Boolean = false;
+  constructor() { 
+  }
   ngOnInit(): void {
+  }
+  handleEmail(): void{
+	let emailBanner = <HTMLElement>document.querySelector('#email-banner');
+		if (!this.email.includes("@") || !this.email.includes(".")) {
+			this.emailRejected = true;
+		} else {
+			this.emailRejected = false;
+		}
+		emailBanner.style.display = "inline";
+		setTimeout(function() {
+			emailBanner.style.display = "none";
+		}, 2000);
   }
 
 }
